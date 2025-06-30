@@ -1,0 +1,55 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Declaração das variáveis para o número secreto, o chute do jogador e o número de tentativas
+        // Declaration of variables for the secret number, player's guess, and the number of attempts
+        int numero, chutado;
+        int tentativa = 0;
+
+        // Criação de um gerador de números aleatórios para sortear o número entre 1 e 100
+        // Create a random number generator to pick a number between 1 and 100
+        Random adivinha = new Random();
+        numero = adivinha.Next(1, 100);
+
+        // Informa o jogador para começar a adivinhar o número
+        // Prompt the player to start guessing the number
+        Console.WriteLine("Vamos começar pensando em um valor de 1 a 100, tente adivinha");
+        chutado = int.Parse(Console.ReadLine());
+        tentativa++;  // Incrementa a contagem de tentativas
+                      // Increment the attempt count
+
+        // Enquanto o chute for diferente do número sorteado, continue pedindo para tentar novamente
+        // While the guess is not equal to the secret number, keep asking to try again
+        while (chutado != numero)
+        {
+            if(chutado < numero)
+            {
+                // Se o chute for menor que o número, avisa para tentar um número maior
+                // If the guess is lower than the number, ask to try a higher number
+                Console.WriteLine("tente novamente, um numero um pouco maior");
+                tentativa++;  // Incrementa a contagem de tentativas / Increment the attempt count
+            }
+            
+            else if (chutado > numero)
+            {
+                // Se o chute for maior que o número, avisa para tentar um número menor
+                // If the guess is higher than the number, ask to try a lower number
+                Console.WriteLine("tente novamente, um numero um pouco menor");
+                tentativa++;  // Incrementa a contagem de tentativas / Increment the attempt count
+            }
+            // Lê o próximo chute do jogador
+            // Read the player's next guess
+            chutado = int.Parse(Console.ReadLine());
+        }
+
+        // Quando o chute for igual ao número, parabeniza o jogador e informa quantas tentativas foram feitas
+        // When the guess is equal to the number, congratulate the player and show attempts count
+        if (chutado == numero)
+        {
+            Console.WriteLine("Otimo trabalho, você acerto o numero " + numero + " cerretamente com " + tentativa + " chutes");
+        }
+    }
+}
